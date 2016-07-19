@@ -90,46 +90,74 @@
 							include('../db.php');
 							$query1 = "SELECT count(*) FROM customer";
 							$result1 = $mysqli->query($query1) or die("error");
-							$current_page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
-							$per_page = 5;
-							$obj1 = $result1->fetch_array(MYSQLI_NUM);
-							$total_count = $obj1[0];
-							$total_pages = $total_count/$per_page;
-							$offset = ($current_page - 1) * $per_page;
-							$previous_page = $current_page - 1;
-							$next_page = $current_page + 1;
-							$has_previous_page =  $previous_page >= 1 ? true : false;
-							$has_next_page = $next_page <= $total_pages ? true : false;
-							$query1 = "SELECT * FROM customer LIMIT {$per_page} OFFSET {$offset}";
+							$r = $result1->fetch_row();
+							$numrows = $r[0];
+							$rowsperpage = 5;
+							$total_pages = ceil($numrows/$rowsperpage);
+
+							if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
+								$currentpage = (int) $_GET['currentpage'];
+							}
+							else{
+								$currentpage = 1;
+							}
+							if($currentpage > $total_pages){
+								$currentpage = $total_pages;
+							}
+							if($currentpage < 1){
+								$currentpage = 1;
+							}
+							$offset = ($currentpage - 1) * $rowsperpage;
+							$query1 = "SELECT * FROM customer LIMIT $offset, $rowsperpage";
 							$result1 = $mysqli->query($query1) or die("error");
-							while($obj1 = $result1->fetch_object())
+
+
+							// $current_page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+							// $per_page = 5;
+							// $obj1 = $result1->fetch_array(MYSQLI_NUM);
+							// $total_count = $obj1[0];
+							// $total_pages = $total_count/$per_page;
+							// $offset = ($current_page - 1) * $per_page;
+							// $previous_page = $current_page - 1;
+							// $next_page = $current_page + 1;
+							// $has_previous_page =  $previous_page >= 1 ? true : false;
+							// $has_next_page = $next_page <= $total_pages ? true : false;
+							// $query1 = "SELECT * FROM customer LIMIT {$per_page} OFFSET {$offset}";
+							$query = "SELECT c.id, c.fname, c.lname, c.address, c.contact, c.bus, c.transactionum, r.route,r.type, r.time, rv.seat, c.payable, c.status FROM customer as c INNER JOIN route as r on c.bus = r.id INNER JOIN reserve as rv on c.transactionum = rv.transactionnum LIMIT $offset, $rowsperpage";
+							$result = $mysqli->query($query) or die("error");
+							while($obj = $result->fetch_object())
 								{
 									echo '<tr class="record">';
-									echo '<td style="border-left: 1px solid #C1DAD7;">'.$obj1->fname.'</td>';
-									echo '<td><div align="right">'.$obj1->lname.'</div></td>';
-									echo '<td><div align="right">'.$obj1->address.'</div></td>';
-									echo '<td><div align="right">'.$obj1->contact.'</div></td>';
-									$rrad=$obj1->bus;
-									$dddd=$obj1->transactionum;
-									// var_dump($rrad);
-									$query2 = "SELECT * FROM route WHERE id='$rrad'";
-									$result2 = $mysqli->query($query2) or die("error");
-									while($obj = $result2->fetch_object()){
-										echo '<td><div align="right">'.$obj->route.'</div></td>';
-										echo '<td><div align="right">'.$obj->type.'</div></td>';
-										echo '<td><div align="right">'.$obj->time.'</div></td>';
-									}
-									$query3 = "SELECT * FROM reserve WHERE transactionnum='$dddd'";
-									// var_dump($query3);
-									$result3 = $mysqli->query($query3) or die("error");
-									while($obj = $result3->fetch_object()){
-										echo '<td><div align="right">'.$obj->seat.'</div></td>';
-									}
-									
-									echo '<td><div align="right">'.$obj1->payable.'</div></td>';
-									echo '<td><div align="right">'.$obj1->status.'</div></td>';
-									echo '<td><div align="center"><a rel="facebox" href="editstatus.php?id='.$obj1->id.'">edit</a> | <a href="#" id="'.$obj1->transactionum.'" class="delbutton" title="Click To Delete">delete</a></div></td>';
+									echo '<td style="border-left: 1px solid #C1DAD7;">'.$obj->fname.'</td>';
+									echo '<td><div align="right">'.$obj->lname.'</div></td>';
+									echo '<td><div align="right">'.$obj->address.'</div></td>';
+									echo '<td><div align="right">'.$obj->contact.'</div></td>';
+									echo '<td><div align="right">'.$obj->route.'</div></td>';
+									echo '<td><div align="right">'.$obj->type.'</div></td>';
+									echo '<td><div align="right">'.$obj->time.'</div></td>';
+									echo '<td><div align="right">'.$obj->seat.'</div></td>';
+									echo '<td><div align="right">'.$obj->payable.'</div></td>';
+									echo '<td><div align="right">'.$obj->status.'</div></td>';
+									echo '<td><div align="center"><a rel="facebox" href="editstatus.php?id='.$obj->id.'">edit</a> | <a href="#" id="'.$obj->transactionum.'" class="delbutton" title="Click To Delete">delete</a></div></td>';
 									echo '</tr>';
+									// $rrad=$obj1->bus;
+									// $dddd=$obj1->transactionum;
+									// // var_dump($rrad);
+									// $query2 = "SELECT * FROM route WHERE id='$rrad'";
+									// $result2 = $mysqli->query($query2) or die("error");
+									// while($obj = $result2->fetch_object()){
+									// 	echo '<td><div align="right">'.$obj->route.'</div></td>';
+									// 	echo '<td><div align="right">'.$obj->type.'</div></td>';
+									// 	echo '<td><div align="right">'.$obj->time.'</div></td>';
+									// }
+									// $query3 = "SELECT * FROM reserve WHERE transactionnum='$dddd'";
+									// var_dump($query3);
+									// $result3 = $mysqli->query($query3) or die("error");
+									// while($obj = $result3->fetch_object()){
+									// 	echo '<td><div align="right">'.$obj->seat.'</div></td>';
+									// }
+									
+									
 									
 								}
 							?> 
@@ -137,21 +165,32 @@
 					</table>
 					<div class="pagination-list">
 						<ul class="pagination">
-						<?php if ($total_pages > 1){
-							// if ($has_previous_page){
-							// 	echo '<li><a href=dashboard.php?page='.$previous_page.'>&laquo;</a></li>';
-							// }
-							for($i = 1; $i <= $total_pages; $i++){
-								if ($i == $current_page){
-									echo '<li class="active"><span>'. $i.' <span class="sr-only">(current)</span></span></li>';
-								}
-								else{
-									echo ' <li><a href=dashboard.php?page='.$i.'> '. $i .' </a></li>';
+						<?php 
+						$range = 1;
+						if ($currentpage > 1){
+							echo "<li> <a href='dashboard.php?currentpage=1'><<</a> </li>";
+							$prevpage = $currentpage - 1;
+
+
+							echo "<li> <a href='dashboard.php?currentpage=1'><<</a></li> ";
+							for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+								if($x > 0 && $x <= $total_pages){
+									if ($x == $currentpage) {
+										echo "<li> [<b>$x</b>] </li>";
+									}
+									else{
+										echo "<li><a href='dashboard.php?currentpage=$x'>$x</a> </li>";
+									}
+
 								}
 							}
-							// if ($has_next_page){
-							// 	echo '<li><a href=dashboard.php?page='.$next_page.'>&raquo;</a></li> ';
-							// }
+							if($currentpage != $total_pages){
+								$nextpage = $currentpage + 1;
+								echo "<li> <a href='dashboard.php?currentpage=$nextpage'>></a> </li>";
+								echo "<li> <a href='dashboard.php?currentpage=$totalpages'>>></a> </li>";
+							}
+
+								
 						} ?>	
 
 					   
