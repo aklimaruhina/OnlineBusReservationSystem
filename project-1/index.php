@@ -1,5 +1,5 @@
 <?php 
-include_once 'config.php';
+include_once 'database/config.php';
 include_once 'header.php'; ?>
 
 
@@ -28,31 +28,68 @@ include_once 'header.php'; ?>
             <div class="col-lg-offset-1">
              <h3>Lowest prices guaranteed on Bus Tickets </h3>
               <div class="pick-form">
-                  <form>
+                  <form method="post" action="searchbus.php">
                     <div class="form-group">
                       <label>From:</label>
-                      <input type="text" placeholder="Enter City" class="form-control">
+                      <select class="form-control" name="city_from">
+
+                                <option>----Select city----</option>
+                                <?php 
+                                $query = "SELECT * FROM `route_one`";
+                                $result = $mysqli->query($query); 
+                                while($obj= $result->fetch_object()) {
+                                  if (!$result) {
+                                    die("Error: Data not Found. . ");
+                                  }
+                                  echo "<option value=".$obj->route_from.">".$obj->route_from."</option>"; 
+                                }
+                                $result->close();
+                                 ?>
+                              </select>
                     </div>
                     <div class="form-group">
                       <label>To:</label>
-                      <input type="text" placeholder="Enter City" class="form-control">
+                      <select class="form-control" name="city_from">
+
+                                <option>----Select city----</option>
+                                <?php 
+                                $query = "SELECT * FROM `route_one`";
+                                $result = $mysqli->query($query); 
+                                while($obj= $result->fetch_object()) {
+                                  if (!$result) {
+                                    die("Error: Data not Found. . ");
+                                  }
+                                  echo "<option value=".$obj->route_to.">".$obj->route_to."</option>"; 
+                                }
+                                $result->close();
+                                 ?>
+                              </select>
                     </div>
                   </form>
               <div class="row">
                 <div class="col-lg-6">
                    <div class="form-group">
                       <label>Date Of journey:</label>
-                      <input type="date" placeholder="Pick a date" class="form-control">
+                      <div class="input-group date" id="date1">
+                        <input type="date" class="form-control" name="dept_date" data-format="yyyy-MM-dd">
+                        <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                       <label>Date Of return(Optional):</label>
-                      <input type="date" placeholder="Pick a date" class="form-control">
+                      <div class="input-group date" id="date2">
+                        <input type="date" class="form-control" name="arr_date">
+                        <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top: 15px;">
-                  <button type="button" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses</button>
+                  <button type="submit" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses</button>
                 </div>
               </div>
           </div>
