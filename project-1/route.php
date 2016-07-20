@@ -10,7 +10,7 @@ include_once 'header.php';?>
             	<div class="col-lg-offset-1">
              		<h3>Enter Bus and route information</h3>
               		<div class="pick-form">
-                  		<form class="form-horizontal">
+                  		<form class="form-horizontal" action="addbus.php" method="POST">
                     		<div class="form-group">
                       			<label for="busname" class="col-sm-2 control-label">Bus Name</label>
                       			<div class="col-sm-10">
@@ -30,13 +30,13 @@ include_once 'header.php';?>
 
                       					<option>----Select city----</option>
                       					<?php 
-                      					$query = "SELECT * FROM `route_one` order by route_id";
+                      					$query = "SELECT * FROM `route_one`";
                       					$result = $mysqli->query($query); 
                       					while($obj= $result->fetch_object()) {
                       						if (!$result) {
                       							die("Error: Data not Found. . ");
                       						}
-                      						echo "<option value=".$obj->route_id.">".$obj->route_from."</option>"; 
+                      						echo "<option value=".$obj->route_from.">".$obj->route_from."</option>"; 
                       					}
                                 $result->close();
                       					 ?>
@@ -49,13 +49,13 @@ include_once 'header.php';?>
                       				<select class="form-control" name="city_to">
                       					<option>----Select city ----</option>
                       					<?php 
-                      					$query = "SELECT * FROM `route_one` order by route_id";
+                      					$query = "SELECT * FROM `route_one`";
                       					$result = $mysqli->query($query); 
                       					while($obj= $result->fetch_object()) {
                       						if (!$result) {
                       							die("Error: Data not Found. . ");
                       						}
-                      						echo "<option value=".$obj->route_id.">".$obj->route_to."</option>"; 
+                      						echo "<option value=".$obj->route_to.">".$obj->route_to."</option>"; 
                       					}
                       					 ?>
                       				</select>
@@ -73,47 +73,32 @@ include_once 'header.php';?>
 							    	<input type="number" class="form-control" name="fare">
 							    </div>
                       		</div>
-                      		<div class="form-group">
-                      			<label for="dtime" class="col-sm-2 control-label">Departure time</label>
-                      			<div class="col-sm-10">
-                      				<select class="form-control" name="dtime">
-                      					<option>--------</option>
-                                <?php 
-                                $query = "SELECT * FROM `time_slots`";
-                                $result = $mysqli->query($query); 
-                                while($obj= $result->fetch_object()){
-                                  if (!$result) {
-                                    die("Error: Data not Found. . ");
-                                  }
-                                  echo "<option value=".$obj->t_id.">".$obj->dept_time."</option>"; 
-                                }
-                                 ?>
-                              </select>
-							    </div>
-                      		</div>
-                      		<div class="form-group">
-                      			<label for="city_to" class="col-sm-2 control-label">Arrival time</label>
-                      			<div class="col-sm-10">
-                      				<select class="form-control" name="arrtime">
-                      					<option>--------</option>
-                      					<?php 
-                      					$query = "SELECT * FROM `time_slots`";
-                      					$result = $mysqli->query($query); 
-                      					while($obj= $result->fetch_object()) {
-                      						if (!$result) {
-                      							die("Error: Data not Found. . ");
-                      						}
-                      						echo "<option value=".$obj->t_id.">".$obj->dept_time."</option>"; 
-                      					}
-                      					 ?>
-                      				</select>
-							    </div>
-                      		</div>
+                          <div class="form-group">
+                            <label for="dtime" class="col-sm-2 control-label">Departure time</label>
+                            <div class="col-sm-10">
+                              <div class="input-group date" id="time1">
+                                <input type="date" class="form-control" name="dtime">
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-time"></span>
+                              </div>
+                            </div>
+                          </div>
+                      		
+                          <div class="form-group">
+                            <label for="arrtime" class="col-sm-2 control-label">Arrival time</label>
+                            <div class="col-sm-10">
+                              <div class="input-group date" id="time2">
+                                <input type="date" class="form-control" name="arrtime">
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-time"></span>
+                              </div>
+                            </div>
+                          </div>
                       		<div class="form-group">
                       			<label for="dept_date" class="col-sm-2 control-label">Departure Date</label>
                       			<div class="col-sm-10">
-                      				<div class="input-group date" id="datetimepicker1">
-                      					<input type="date" class="form-control" class="dept_date">
+                      				<div class="input-group date" id="date1">
+                      					<input type="date" class="form-control" name="dept_date" data-format="yyyy-MM-dd">
                       					<span class="input-group-addon">
                                   <span class="glyphicon glyphicon-calendar"></span></span>
                       				</div>
@@ -122,41 +107,43 @@ include_once 'header.php';?>
                       		<div class="form-group">
                       			<label for="arrival_date" class="col-sm-2 control-label">Arrival Date</label>
                       			<div class="col-sm-10">
-                      				<div class="input-group">
-                      					<input type="date" class="form-control" class="deptdate">
-                      					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      				<div class="input-group date" id="date2">
+                      					<input type="date" class="form-control" name="arr_date">
+                      					<span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                       				</div>
                       			</div>
                       		</div>
                       		<div class="col-lg-5 col-md-offset-5 pull-right" style="padding-top: 15px;">
-                 				<button type="button" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-plus"></span>Added Buses</button>
+                 				<button type="submit" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-plus"></span>Added Buses</button>
                 			</div>
                       	</form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-          <div class="ad-section text-center">
-            <div class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="item active">
-                  <img src="img/ad 1.gif" alt="img 1" class="img-responsive text-center">
-                </div>
-                <div class="item">
-                  <img src="img/ad 2.jpg" alt="Img 2" class="img-responsive text-center">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         </div>
        </div>
     </div>
   </div>
-<?php include_once 'footer.php'; ?>
-<script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
+
+
+        <?php include_once 'footer.php'; ?>
+        <script type="text/javascript">
+          $(document).ready(function(){
+             $('#date1').datetimepicker({
+                 format: 'DD/MM/YYYY'
+              });
+             $('#date2').datetimepicker({
+                 format: 'DD/MM/YYYY'
+              });
+             $('#time1').datetimepicker({
+                    format: 'LT'
+                });
+             $('#time2').datetimepicker({
+                    format: 'LT'
+                });
+          });
+                     
         </script>
