@@ -49,7 +49,7 @@ include_once 'header.php'; ?>
                     </div>
                     <div class="form-group">
                       <label>To:</label>
-                      <select class="form-control" name="city_from">
+                      <select class="form-control" name="city_to">
 
                                 <option>----Select city----</option>
                                 <?php 
@@ -65,7 +65,6 @@ include_once 'header.php'; ?>
                                  ?>
                               </select>
                     </div>
-                  </form>
               <div class="row">
                 <div class="col-lg-6">
                    <div class="form-group">
@@ -89,9 +88,10 @@ include_once 'header.php'; ?>
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top: 15px;">
-                  <button type="submit" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses</button>
+                  <input type="submit" name="search_btn" value="Search Buses" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses
                 </div>
               </div>
+            </form>
           </div>
         </div>
         </div>
@@ -332,3 +332,15 @@ include_once 'header.php'; ?>
 
 
   <?php include_once 'footer.php'; ?>
+  <script type="text/javascript">
+          $(document).ready(function(){
+             $('#date1').datetimepicker({
+                 format: 'DD/MM/YYYY'
+              });
+             $('#date2').datetimepicker({
+                 format: 'DD/MM/YYYY'
+              });
+             
+          });
+                     
+        </script>
