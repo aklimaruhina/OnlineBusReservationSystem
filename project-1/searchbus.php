@@ -42,12 +42,12 @@ if($_POST):
                                 <?php 
                                     while($row = mysqli_fetch_assoc($result)){?>
                                     <tr>
-                                        <td><?php echo $row['bus_name'].'<br>'.$row['bus_info'].'<br> Route:'.$row['city_from']." ".$row['city_to'] ?></td>
+                                        <td><?php echo $row['bus_name'].'<br>'.$row['bus_info'].'<br> Route:'.$row['city_from']."-".$row['city_to'] ?></td>
                                         <td><?php echo $row['dtime'] ?></td>
                                         <td><?php echo $row['arrtime'] ?></td>
                                         <td><?php echo $row['seat'] ?></td>
                                         <td><?php echo $row['fare'] ?></td>
-                                        <td><a href="">Buy ticket</a></td>
+                                        <td><a href="selectseat.php?id=<?php echo $row['id'] ?>">Choose your seat</a></td>
                                     </tr>
                                        
                             <?php

@@ -90,11 +90,11 @@ $query2 = "SELECT sum(seat_reserve) as rerv FROM reserve where date = '$date'";
 $result = $mysqli->query($query1) or trigger_error($mysqli->error."[$query1]");
 while($obj= $result->fetch_object())
   {
-    $numofseats=$obj->numseats;
+    $numofseats=$obj->numseats;// from route got total seat number
     $result2 = $mysqli->query($query2) or trigger_error($mysqli->error."[$query2]");
     
     while($objj = $result2->fetch_object()){
-      $inogbuwin = $objj->rerv;
+      $inogbuwin = $objj->rerv; //from reserve get total reserve no 
     }
     $result2->free();
     $avail=$numofseats-$inogbuwin;
@@ -146,7 +146,7 @@ if (b==null || b=="")
 <input type="hidden" value="<?php echo $date ?>" name="date" />
 <input type="hidden" value="<?php echo $qty ?>" name="qty" />
 <label>Seat Number
-<span class="small">Auto Generated <a rel="facebox" href="seatlocation.php?id=<?php echo $busnum; ?>">view seat</a></span>
+<!-- <span class="small">Auto Generated <a rel="facebox" href="seatlocation.php?id=<?php echo $busnum; ?>">view seat</a></span> -->
 </label>
 <input type="text" name="setnum" value="
 <?php
