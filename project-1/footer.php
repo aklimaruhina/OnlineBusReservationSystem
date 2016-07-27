@@ -60,9 +60,9 @@
 
 
     <script src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script> 
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script> 
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>   
+    <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>   
 
   </body>
 </html>

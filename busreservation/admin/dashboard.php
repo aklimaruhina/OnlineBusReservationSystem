@@ -123,7 +123,7 @@
 							// $has_previous_page =  $previous_page >= 1 ? true : false;
 							// $has_next_page = $next_page <= $total_pages ? true : false;
 							// $query1 = "SELECT * FROM customer LIMIT {$per_page} OFFSET {$offset}";
-							$query = "SELECT c.id, c.fname, c.lname, c.address, c.contact, c.bus, c.transactionum, r.route,r.type, r.time, rv.seat, c.payable, c.status FROM customer as c INNER JOIN route as r on c.bus = r.id INNER JOIN reserve as rv on c.transactionum = rv.transactionnum LIMIT $offset, $rowsperpage";
+							$query = "SELECT c.id, c.fname, c.lname, c.address, c.contact, c.bus, c.transactionum, r.route,r.type, r.time, rv.seat, c.payable, c.status FROM customer as c INNER JOIN route as r on c.bus = r.id INNER JOIN reserve as rv on c.transactionum = rv.transactionnum";
 							$result = $mysqli->query($query) or die("error");
 							while($obj = $result->fetch_object())
 								{

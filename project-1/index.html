@@ -1,4 +1,27 @@
-<?php include_once 'header.php'; ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Sohoj<span class="text-green">Ticket.</span></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="index.html"><i class="fa fa-bus"></i>Buses</a></li>
+          <li><a href="launch.html" target="_"><i class="fa fa-ship"></i>launch</a></li>
+          <li><a href="movies.html" target="_"><i class="fa fa-film"></i>Movies</a></li>
+        </ul>
+      </div>
+  </nav>
 
 
   <div class="nav-tabs">
@@ -9,7 +32,7 @@
               <li role="presentation" class="active"><a href="#">Print/SMS Ticket</a></li>
               <li role="presentation"><a href="#">Cancel Ticket</a></li>
               <li role="presentation"><a href="#">Refund Status</a></li>
-              <li class="nav-menu navbar-right"><a href="#">Login(Optional)</a></li>
+              <li class="nav-menu navbar-right"><a href="#" data-target="#login_modal" data-toggle="modal">Login(Optional)</a></li>
             </ul>
         </div>
       </div>
@@ -146,6 +169,8 @@
       </div>
     </div>
   </div>
+
+
 
   <div class="bus-operator">
     <div class="container">
@@ -292,4 +317,126 @@
   </div>
 
 
-  <?php include_once 'footer.php'; ?>
+  <div class="big-footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <hr style="border-color:#1abc9c; border:2px solid #1abc9c;">
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="col-lg-offset-1">
+          <div class="big-menu">
+        <ul>
+          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#">FAQS</a></li>
+          <li><a href="#">OFFERS</a></li>
+          <li><a href="#">TERMS OF USE</a></li>
+          <li><a href="#">PRIVACY</a></li>
+          <li><a href="#">POLICY</a></li>
+          <li><a href="#">CANCELLATION POLICY</a></li>
+          <li><a href="#">SHOHOZ PARTNERS</a></li>
+          <li><a href="#">CONTACT US</a></li>
+        </ul>
+      </div>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="logo-menu">
+          <ul>
+            <li><a href="http://facebook.com"><i class="fa fa-facebook-square text-green"></i></a></li>
+            <li><a href="http://twitter.com"><i class="fa fa-twitter text-green"></i></a></li>
+            <li><a href="http://google.com"><i class="fa fa-google-plus-square text-green"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <hr style="border-color:#dddddd">
+        </div>
+        <div class="col-lg-offset-1">
+          <img src="img/sslcommerz_logo.png" alt="available-paymethod">
+        </div>
+        <hr style="border-color:#dddddd">
+        <div class="footer">
+          <p class="text-center">&copy;2015 Shohoz-Ticket. All Rights Reserved. </p>
+          <hr style="border-color:#dddddd">
+          <div class="footer-content" style="color:#a3a3a3">
+            <p class="text-center">
+              Shohoz.com, owned and operated by Shohoj Limited, is a premium online travel service provider which aims to make long distance travel in Bangladesh easy and convenient. Driven by the passion to serve you better, Shohoz.com went on to pioneer the online travel industry by offering bus tickets, hotel reservation and launch tickets
+            </p><br>
+            <p class="text-center">Our team of energetic and young professionals with deep expertise in eCommerce and travel domains, leave no stone unturned to provide you the best of services at minimal costs through our user friendly website, mobile optimized WAP site, and a multi-lingual call center. </p><br>
+            <p class="text-center">A trusted service backed by customer service excellence and innovation in operations, Shohoz.com provides information about pricing, availability, timings, and booking facility for bus tickets, hotel reservations and launch tickets. If you do not have access to internet, you can call 16374 and get your bookings done. You can pay for the tickets or hotel bookings via credit / debit cards, mobile payment gateways like bKash or cash. We offer Cash on Delivery (CoD), where you pay for your tickets or bookings in cash once your receive them at your doorstep. </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+   <div class="modal fade" id="login_modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4>Login Or Signup</h4>
+                      </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                          <label>Mobile</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile">
+                        <label  style="padding-top:10px;">Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Password">
+                        <label style="padding-top:5px;"><input type="checkbox">&nbsp;Remember me</label>
+                        </div>
+                        <div class="form-group">
+                          <button class="form-control" style="background:#1abc9c; padding-bottom:10px">Shohoj login</button>
+                         
+                        </div>
+                    </div>
+                    <div class="modal-footer"> 
+                       <a href="" class="text-green" data-target="#signup_modal" data-toggle="modal">New User?? Create Account</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+           <div class="modal fade" id="signup_modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="text-center text-green">Create Account</h4>
+                      </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" >
+                        <input type="phone" class="form-control" placeholder="Mobile Number" style="margin-top:10px">
+                        <input type="password" class="form-control" placeholder="Enter Password" style="margin-top:10px">
+                        <input type="password" class="form-control" placeholder="Re-type Password" style="margin-top:10px">
+                        <label style="padding-top:5px;"><input type="checkbox">&nbsp;I agree with the <span class="text-green">Terms Of Use</span></label>
+                        </div>
+                        <div class="form-group">
+                          <button class="form-control" style="background:#1abc9c; padding-bottom:10px">Create Account</button>
+                          <button class="form-control btn-primary" style="margin-top:10px"><a href="#" class="text-white" data-target="#login_modal" data-toggle="modal">Already Registered? Login</a></button>
+                        </div>
+                    </div>
+                    <div class="modal-footer"> 
+                       
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

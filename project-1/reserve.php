@@ -1,11 +1,13 @@
 <?php include_once 'header.php'; 
 include_once 'database/config.php';
-$busno = $_GET['id'];
+session_start();
+$_SESSION['id'] = $_GET['id'];
+$_SESSION['date'] = $_GET['date'];
 if($_POST):
 
 $qty =  $_POST['qty'];
 
-$query = "SELECT * FROM `bus_reserve` where id =". $busno;
+$query = "SELECT * FROM `bus_reserve` where id = '$busnum' AND dept_date = '$date'";
 // $query2 = "INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`) VALUES (NULL, '$qty', '$busnum')";
 
 $query2 = "SELECT SUM(`total_reserve`) as reserve FROM `reserve_list` WHERE `busno`= ".$busno;
@@ -18,6 +20,7 @@ while($obj= $result->fetch_object()){
 	}
 	$result2->free();
     $avail=$numofseats-$inogbuwin;
+    echo $avail;
     $setnum=$inogbuwin+1;
 
 }
@@ -70,10 +73,12 @@ if (b==null || b=="")
               			<div class="pick-form">
                   			<form method="post" action="savebus.php?id=<?php echo $busno;?>" class="form-horizontal" onsubmit="return validateForm()">
                  				<div class="form-group">
-                                    <input type="hidden" name="id" value="<?php echo $busno; ?>" >
-                                </div>
+                          <input type="hidden" name="id" value="<?php echo $busno; ?>" >
+                        </div>
                  				<input type="hidden" value="<?php echo $qty ?>" name="qty" />
-                 				<div class="form-group">
+                 				<input type="hidden" name="date" value="<?php echo $_GET['dept_date'] ?>">
+
+                        <div class="form-group">
                       				<label for="firstname" class="col-sm-4 control-label">First Name</label>
                       				<div class="col-sm-8">
           							    <input type="text" class="form-control" name="firstname" placeholder="Enter Your first Name">
@@ -110,6 +115,9 @@ if (b==null || b=="")
                                 				
                         			</div>
                         		</div>
+                            <div class="form-group">
+                              <input type="hidden" name="avail" value="<?php echo $avail ?>" >
+                            </div>
                         		<div class="col-lg-5 col-md-offset-5 pull-right" style="padding-top: 15px;">
                  					<button type="submit" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-plus"></span>Added Buses</button>
                 				</div>

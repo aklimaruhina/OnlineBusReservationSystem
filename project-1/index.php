@@ -11,7 +11,7 @@ include_once 'header.php'; ?>
               <li role="presentation" class="active"><a href="#">Print/SMS Ticket</a></li>
               <li role="presentation"><a href="#">Cancel Ticket</a></li>
               <li role="presentation"><a href="#">Refund Status</a></li>
-              <li class="nav-menu navbar-right"><a href="#">Login(Optional)</a></li>
+              <li class="nav-menu navbar-right"><a href="#" data-target="#login_modal" data-toggle="modal">Admin Login</a></li>
             </ul>
         </div>
       </div>
@@ -330,7 +330,33 @@ include_once 'header.php'; ?>
     </div>
   </div>
 
-
+<div class="modal fade" id="login_modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4>Admin Login</h4>
+      </div>
+      <div class="modal-body">
+        <form action="login.php" method="post">
+          <div class="form-group">
+            <label>User Name: </label>
+              <input type="text" name="uname" class="form-control" placeholder="Enter User Name" />
+            <label  style="padding-top:10px;">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Enter Password" />
+            <label style="padding-top:5px;">
+              <input type="checkbox" />&nbsp;Remember me
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control" style="background:#1abc9c; padding-bottom:10px" name="login">Admin login</button>
+           
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
   <?php include_once 'footer.php'; ?>
   <script type="text/javascript">
           $(document).ready(function(){

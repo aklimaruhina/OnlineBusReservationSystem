@@ -1,6 +1,7 @@
 <?php 
 include_once 'header.php';
 include_once 'database/config.php'; 
+
 $city_from = $_POST['city_from'];
 $city_to = $_POST['city_to'];
 $date1 = explode('/', $_POST['dept_date']);
@@ -15,7 +16,6 @@ if($_POST):
 	// $search_btn = mysqli_real_escape_string($_REQUEST['search_btn']);    
 	$query = "SELECT * FROM `bus_reserve` WHERE `city_from` = '$city_from' AND `city_to` = '$city_to' AND `dept_date` = '$new_date1' AND `arr_date` = '$new_date2'";
 	$result = $mysqli->query($query);
-
 	endif;
 ?>
 
@@ -33,6 +33,8 @@ if($_POST):
                                         <th>Operator(Bus type)</th>
                                         <th>Dep.time</th>
                                         <th>Arr.time</th>
+                                        <th>Departure Date</th>
+                                        <th>Arrival Date</th>
                                         <th>Seats Available</th>
                                         <th>Fare</th>
                                         <th>Action</th>
@@ -40,14 +42,28 @@ if($_POST):
                                 </thead>
                                 <tbody>
                                 <?php 
-                                    while($row = mysqli_fetch_assoc($result)){?>
+                                    while($row = mysqli_fetch_assoc($result)){
+                                      $id = $row['id'];
+                                      $date = $row['dept_date'];
+                                      // $_SESSION['id'] = $id;
+                                      // $_SESSION['date'] = $row['dept_date'];
+
+                                      // $id = $_SESSION['id'];
+                                      // $date = $_SESSION['date'];
+                                      
+                                      // $dept_date=$row['dept_date'];
+                                      ?>
+
+
                                     <tr>
                                         <td><?php echo $row['bus_name'].'<br>'.$row['bus_info'].'<br> Route:'.$row['city_from']."-".$row['city_to'] ?></td>
                                         <td><?php echo $row['dtime'] ?></td>
                                         <td><?php echo $row['arrtime'] ?></td>
+                                        <td><?php echo $row['dept_date'] ?></td>
+                                        <td><?php echo $row['arr_date'] ?></td>
                                         <td><?php echo $row['seat'] ?></td>
                                         <td><?php echo $row['fare'] ?></td>
-                                        <td><a href="selectseat.php?id=<?php echo $row['id'] ?>">Choose your seat</a></td>
+                                        <td><a href="selectseat.php?id=<?php echo $id."&date =" .urlencode($new_date1)?>">Choose your seat</a></td>
                                     </tr>
                                        
                             <?php

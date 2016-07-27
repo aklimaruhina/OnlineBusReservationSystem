@@ -1,0 +1,108 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	width: 100%;
+	height: 100%;
+}
+.navbar{
+	border-radius: 0px;
+}
+.text-green{
+	color: #1abc9c;
+}
+.text-default{
+	color: black;
+}
+.text-white{
+	color: white;
+}
+.nav-tabs .col-lg-12{
+	padding: 0px; margin: 0px;
+	border-bottom: 4px solid #1abc9c;
+}
+.ticket-pick{
+	padding-top: 30px;
+}
+.mid-content{
+
+}
+.pick-form{
+	padding-top: 20px;
+}
+.ad-section{
+	border: 4px solid #1abc9c;
+	width: 100%;
+	overflow: hidden;
+}
+.why-buy{
+	padding: 40px 0px;
+	background-color: #fbfbfb;
+}
+.first-whybuy ul li{
+	list-style-type: square;
+	color: #1abc9c;
+}
+.first-whybuy h4{
+	padding-bottom: 15px;
+}
+.scnd-whybuy h4{
+	padding-bottom: 15px;
+}
+.bus-operator{
+	padding-bottom: 20px;
+}
+.operator ul{
+	list-style-type: none;
+}
+.operator ul li{
+	float: left;
+}
+.works-section{
+	border: 1px solid #1abc9c;
+	padding: 20px;
+}
+.works-section ul{
+	list-style-type: square;
+}
+.available-route ul{
+	list-style-type: none;
+}
+.big-menu ul{
+	list-style-type: none;
+	padding: 12px;
+}
+.big-menu ul li{
+	display: inline;
+	margin-left: 7px;
+}
+.big-menu ul li a{
+	color: black;
+}
+.big-menu ul li a:hover{
+	color: #1abc9c;
+}
+.logo-menu ul{
+	list-style-type: none;
+}
+.logo-menu ul li{
+	display: inline;
+	font-size: 30px;
+	letter-spacing: 5px;
+}
+
+
+/* Movies section css */
+.buy-show{
+	padding: 30px 0px;
+}
+.instant-buy{
+	border: 1px solid #dedede;
+}
+.now-showing h4{
+	border-bottom: 3px solid #1abc9c;
+}
+
+
+/* admin_dashboard */
+.content-table{
+	padding-top: 20px;
+}

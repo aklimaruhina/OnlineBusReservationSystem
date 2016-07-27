@@ -1,10 +1,14 @@
 <?php 
 include_once 'header.php'; 
 include_once 'database/config.php';
-$busnum = $_GET['id'];
+session_start();
+$date =urldecode( $_GET['date']);
+$id = $_GET['id'];
+// $date = $_GET['date'];
+var_dump($date);
+// $date = $_GET['dept_date'];
 
-
-$query = "SELECT * FROM `bus_reserve` where id =". $busnum;
+$query = "SELECT * FROM `bus_reserve` where id = '$busnum' AND dept_date = '$date'";
 
 // $result = $mysqli->query($query);
 // $query2 = "INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`) VALUES (NULL, '$qty', '$busnum')";
@@ -32,9 +36,10 @@ $query = "SELECT * FROM `bus_reserve` where id =". $busnum;
           		<div class="col-lg-6">
           			<div class="row">
             			<div class="col-lg-offset-1">
-            				<form action="reserve.php?id=<?php echo $busnum;?>" method="post">
+            				<form action="reserve.php?id=<?php echo $busnum.'&date='.$date;?>" method="post">
                                 <div class="form-group">
                                     <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" >
+                                    <input type="hidden" name="date" value="<?php echo $_GET['dept_date'] ?>">
                                 </div>
             					<div class="form-group">
             						<label>Select Number of passenger: </label>
