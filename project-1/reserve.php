@@ -1,13 +1,12 @@
 <?php include_once 'header.php'; 
 include_once 'database/config.php';
-session_start();
-$_SESSION['id'] = $_GET['id'];
-$_SESSION['date'] = $_GET['date'];
+$date =urldecode( $_GET['date']);
+$busno = $_GET['id'];
 if($_POST):
 
 $qty =  $_POST['qty'];
 
-$query = "SELECT * FROM `bus_reserve` where id = '$busnum' AND dept_date = '$date'";
+$query = "SELECT * FROM `bus_reserve` where id = '$busno' AND dept_date = '$date'";
 // $query2 = "INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`) VALUES (NULL, '$qty', '$busnum')";
 
 $query2 = "SELECT SUM(`total_reserve`) as reserve FROM `reserve_list` WHERE `busno`= ".$busno;
@@ -76,7 +75,7 @@ if (b==null || b=="")
                           <input type="hidden" name="id" value="<?php echo $busno; ?>" >
                         </div>
                  				<input type="hidden" value="<?php echo $qty ?>" name="qty" />
-                 				<input type="hidden" name="date" value="<?php echo $_GET['dept_date'] ?>">
+                 				<input type="hidden" value="<?php echo $date ?>" name="date"  />
 
                         <div class="form-group">
                       				<label for="firstname" class="col-sm-4 control-label">First Name</label>

@@ -39,9 +39,9 @@
               	  <li><a href="admin_dashboard.php">Dashboard</a></li>
               	  <li><a href="admin_dashboard_bus.php">Bus</a></li>
               	  <li><a href="admin_dashboard_bus_seat.php">Bus Seat Inventory</a></li>
-              	  <li><a href="admin_dashboard_launch.html">Launch</a></li>
-              	  <li><a href="admin_dashboard_launch_seat.html">Launch seat inventory</a></li>
-              	  <li><a href="admin_dashboard_movie.html">Movie</a></li>
+              	  <li><a href="admin_dashboard_launch.php">Launch</a></li>
+              	  <li><a href="admin_dashboard_launch_seat.php">Launch seat inventory</a></li>
+              	  <li><a href="admin_dashboard_movie.php">Movie</a></li>
             	</ul>
         	</div>
          </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2016 at 11:22 AM
+-- Generation Time: Jul 27, 2016 at 04:35 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -19,8 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `ticket`
 --
-CREATE DATABASE IF NOT EXISTS `ticket` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ticket`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'admin', 'admin'),
+(2, 'ruhina05', 'admin');
 
 -- --------------------------------------------------------
 
@@ -64,41 +82,20 @@ CREATE TABLE `reserve_list` (
   `id` int(11) NOT NULL,
   `total_reserve` varchar(11) NOT NULL,
   `busno` varchar(30) NOT NULL,
-  `transaction_code` varchar(10) NOT NULL
+  `transaction_code` varchar(10) NOT NULL,
+  `setnum` varchar(100) NOT NULL,
+  `seat_remain` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reserve_list`
 --
 
-INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`, `transaction_code`) VALUES
-(1, '3', '', ''),
-(2, '3', 'busnum', ''),
-(3, '4', 'busnum', ''),
-(4, '4', '4', ''),
-(5, '4', '6', ''),
-(6, '5', '4', ''),
-(7, '4', '4', ''),
-(8, '3', '4', ''),
-(9, '3', '4', ''),
-(10, '3', '4', ''),
-(11, '3', '4', ''),
-(12, '3', '4', ''),
-(13, '3', '4', ''),
-(14, '3', '4', ''),
-(15, '3', '4', ''),
-(16, '', '4', ''),
-(17, '4', '4', ''),
-(18, '4', '4', ''),
-(19, '4', '4', ''),
-(20, '4', '4', ''),
-(21, '', '4', ''),
-(22, '2', '6', ''),
-(23, '2', '6', ''),
-(24, '3', '6', ''),
-(25, '4', '6', 'ffk0dwch'),
-(26, '3', '6', ''),
-(27, '4', '6', 'gmn5s84r');
+INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`, `transaction_code`, `setnum`, `seat_remain`) VALUES
+(40, '4', '4', 'gvoat65p', '1, 2, 3, 4, ', ''),
+(41, '6', '4', '0wa54bwa', '5, 6, 7, 8, 9, 10, ', ''),
+(42, '3', '6', '34xfmgd7', '1, 2, 3, ', ''),
+(43, '3', '6', '6ex4ycux', '4, 5, 6, ', '');
 
 -- --------------------------------------------------------
 
@@ -117,17 +114,19 @@ CREATE TABLE `reserve_section` (
   `transaction_code` varchar(10) NOT NULL,
   `status` varchar(100) NOT NULL,
   `payable` varchar(11) NOT NULL,
-  `busno` varchar(30) NOT NULL
+  `busno` varchar(30) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reserve_section`
 --
 
-INSERT INTO `reserve_section` (`id`, `firstname`, `lastname`, `contact`, `address`, `seat`, `setnum`, `transaction_code`, `status`, `payable`, `busno`) VALUES
-(2, 'grtrt', 'rtrt', '01241547874', 'grtrtrtg ', '', '12, 13, 14, 15, ', 'ffk0dwch', '', '1440', '6'),
-(3, 'fere', 'erere', '2635595', 'hmbkhbkj', '', '16, 17, 18, ', '2twjvwep', '', '1080', '6'),
-(4, 'dere', 'rere', '265652326', 'frrftgttgyt5rt', '', '19, 20, 21, 22, ', 'gmn5s84r', '', '1440', '6');
+INSERT INTO `reserve_section` (`id`, `firstname`, `lastname`, `contact`, `address`, `seat`, `setnum`, `transaction_code`, `status`, `payable`, `busno`, `date`) VALUES
+(17, 'ashna', 'aman', '0839454', 'faeraerfeere ', '50', '1, 2, 3, 4, ', 'gvoat65p', '', '1720', '4', '2016-07-21'),
+(18, 'ayesha', 'erere', '64534342', 'fereraerereraerfer', '46', '5, 6, 7, 8, 9, 10, ', '0wa54bwa', '', '2580', '4', '2016-07-21'),
+(19, 'fdefedfe', 'ererrde ', 'aerearer ', 'ereareggtare', '46', '1, 2, 3, ', '34xfmgd7', '', '1080', '6', '2016-07-21'),
+(20, 'rfgrtae', 'tgeraerf', '867675', 'feraere', '43', '4, 5, 6, ', '6ex4ycux', '', '1080', '6', '2016-07-21');
 
 -- --------------------------------------------------------
 
@@ -164,6 +163,12 @@ INSERT INTO `route_one` (`route_id`, `route_to`, `route_from`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `bus_reserve`
 --
 ALTER TABLE `bus_reserve`
@@ -192,6 +197,11 @@ ALTER TABLE `route_one`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `bus_reserve`
 --
 ALTER TABLE `bus_reserve`
@@ -200,12 +210,12 @@ ALTER TABLE `bus_reserve`
 -- AUTO_INCREMENT for table `reserve_list`
 --
 ALTER TABLE `reserve_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `reserve_section`
 --
 ALTER TABLE `reserve_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `route_one`
 --

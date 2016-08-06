@@ -1,5 +1,5 @@
 <?php 
-include_once 'database/config.php';
+include_once '../database/config.php';
 include_once 'header.php';?>
 <div class="ticket-pick">
     <div class="container" style="border-bottom:2px solid #1abc9c; padding-bottom:30px">
@@ -41,7 +41,7 @@ include_once 'header.php';?>
                                 $result->close();
                       					 ?>
                       				</select>
-							    </div>
+							              </div>
                       		</div>
                       		<div class="form-group">
                       			<label for="city_to" class="col-sm-2 control-label">To</label>

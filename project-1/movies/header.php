@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
   </head>
   <body>
   	<nav class="navbar navbar-default navbar-inverse">
@@ -20,6 +20,8 @@
     			<li class="active"><a href="index.php"><i class="fa fa-bus"></i>Buses</a></li>
     			<li><a href="launch.php" target="_"><i class="fa fa-ship"></i>launch</a></li>
     			<li><a href="movies.php" target="_"><i class="fa fa-film"></i>Movies</a></li>
+          <li><a href="login.php#wrapper">Login</a></li>
+          <li><a href="registration.php#wrapper">Register</a></li>
     		</ul>
   		</div>
 	</nav>

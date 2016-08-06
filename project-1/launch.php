@@ -1,9 +1,7 @@
 <?php 
 include_once 'database/config.php';
 include_once 'header.php'; ?>
-
-
-  <div class="nav-tabs">
+<div class="nav-tabs">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -28,7 +26,7 @@ include_once 'header.php'; ?>
             <div class="col-lg-offset-1">
              <h3>Lowest prices guaranteed on Bus Tickets </h3>
               <div class="pick-form">
-                  <form method="post" action="searchbus.php">
+                  <form method="post" action="searchlaunch.php">
                     <div class="form-group">
                       <label>From:</label>
                       <select class="form-control" name="city_from">
@@ -88,7 +86,7 @@ include_once 'header.php'; ?>
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top: 15px;">
-                  <input type="submit" name="search_btn" value="Search Buses" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses
+                  <button type="submit" name="search_btn" style="background:#1abc9c" class="form-control"><span class="glyphicon glyphicon-search"></span>Search Buses</button>
                 </div>
               </div>
             </form>

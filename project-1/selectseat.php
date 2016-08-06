@@ -2,10 +2,11 @@
 include_once 'header.php'; 
 include_once 'database/config.php';
 session_start();
+//var_dump($_GET);die;
 $date =urldecode( $_GET['date']);
-$id = $_GET['id'];
+$busnum = $_GET['id'];
 // $date = $_GET['date'];
-var_dump($date);
+
 // $date = $_GET['dept_date'];
 
 $query = "SELECT * FROM `bus_reserve` where id = '$busnum' AND dept_date = '$date'";
@@ -38,8 +39,8 @@ $query = "SELECT * FROM `bus_reserve` where id = '$busnum' AND dept_date = '$dat
             			<div class="col-lg-offset-1">
             				<form action="reserve.php?id=<?php echo $busnum.'&date='.$date;?>" method="post">
                                 <div class="form-group">
-                                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" >
-                                    <input type="hidden" name="date" value="<?php echo $_GET['dept_date'] ?>">
+                                    <input type="hidden" name="id" value="<?php echo $busnum; ?>" >
+                                    <input type="hidden" name="date" value="<?php echo $date ?>">
                                 </div>
             					<div class="form-group">
             						<label>Select Number of passenger: </label>

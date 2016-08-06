@@ -1,24 +1,4 @@
-<?php 
-include_once 'header.php';
-include_once 'database/config.php'; 
-
-$city_from = $_POST['city_from'];
-$city_to = $_POST['city_to'];
-$date1 = explode('/', $_POST['dept_date']);
-$new_date1 = $date1[2].'-'.$date1[1].'-'.$date1[0];
-$date2 = explode('/', $_POST['arr_date']);
-$new_date2 = $date2[2].'-'.$date2[1].'-'.$date2[0];
-if($_POST):	
-	// $city_from = $_GET['city_from'];
-	// $city_to = $_GET['city_to'];
-	// $dept_date = $_GET['dept_date'];
-	// $arr_date = $_GET['arr_date'];
-	// $search_btn = mysqli_real_escape_string($_REQUEST['search_btn']);    
-	$query = "SELECT * FROM `bus_reserve` WHERE `city_from` = '$city_from' AND `city_to` = '$city_to' AND `dept_date` = '$new_date1' AND `arr_date` = '$new_date2'";
-	$result = $mysqli->query($query);
-	endif;
-?>
-
+<?php include_once 'header.php'; ?>
 <div class="ticket-pick">
     <div class="container" style="border-bottom:2px solid #1abc9c; padding-bottom:30px">
       	<div class="row">
@@ -30,13 +10,12 @@ if($_POST):
                             <table class="table hover">
                                 <thead>
                                     <tr>
-                                        <th>Operator(Bus type)</th>
+                                        <th>Launch/ship</th>
                                         <th>Dep.time</th>
                                         <th>Arr.time</th>
                                         <th>Departure Date</th>
                                         <th>Arrival Date</th>
-                                        <th>Seats Available</th>
-                                        <th>Fare</th>
+                                        <th>Fare Range</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -79,4 +58,4 @@ if($_POST):
         </div>
     </div>
 </div>
-   
+<?php include_once 'footer.php'; ?>

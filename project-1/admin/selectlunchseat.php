@@ -1,9 +1,4 @@
-<?php 
-include_once 'database/config.php';
-include_once 'header.php'; ?>
-
-
-  <div class="nav-tabs">
+<div class="nav-tabs">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">

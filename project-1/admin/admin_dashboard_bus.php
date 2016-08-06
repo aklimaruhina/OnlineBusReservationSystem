@@ -9,6 +9,8 @@ $row_cnt = $result->num_rows;
 <div class="content-table">
 		<div class="container">
 			<div class="col-lg-12">
+				<div class="pull-right"><a href="route.php" class="btn btn-primary">Add new bus route</a></div>
+
 		        <table class="table table-bordered">
 		        	<thead>
 		        		<tr class="active">

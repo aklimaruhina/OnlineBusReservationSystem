@@ -15,6 +15,8 @@ function createRandomPassword() {
 }
 $confirmation = createRandomPassword();
 $busnum=$_GET['id'];
+$date1 = $_POST['date'];
+// $new_date1 = $date1[2].'-'.$date1[1].'-'.$date1[0];
 $firstname=$_POST['firstname'];
 $qty=$_POST['qty'];
 $avail = $_POST['avail'];
@@ -34,18 +36,18 @@ while($obj= $result->fetch_object())
 	}
 	$payable=$qty*$price;
 
-$query1 = "INSERT INTO reserve_section (id, firstname, lastname, contact, address, setnum, transaction_code, payable, busno,seat)
-VALUES (NULL, '$firstname', '$lastname', '$contact', '$address', '$setnum', '$confirmation','$payable','$busnum',$avail)";
+$query1 = "INSERT INTO reserve_section (`id`, `firstname`, `lastname`, `contact`, `address`, `setnum`, `transaction_code`, `payable`, `busno`,`seat`,`date`)
+VALUES (NULL, '$firstname', '$lastname', '$contact', '$address', '$setnum', '$confirmation','$payable','$busnum','$avail','$date1')";
+
 $result1 = $mysqli->query($query1);
 $query2 = "INSERT INTO `reserve_list` (`id`, `total_reserve`, `busno`,`transaction_code`,`setnum`) VALUES (NULL, '$qty', '$busnum','$confirmation','$setnum')";
 
-// $query2 = "INSERT INTO reserve (bus, seat_reserve, transactionnum, seat)
-// VALUES ('$date', '$busnum', '$qty', '$confirmation','$setnum')";
+
 $result2 = $mysqli->query($query2);
 
 if($result1 && $result2){
 	echo "successfull";
- header("location: print.php?id=$confirmation&setnum=$setnum");
+ 	header("location: print.php?id=$confirmation&setnum=$setnum");
 exit();
 }
 else{
